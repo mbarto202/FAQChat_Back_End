@@ -1,9 +1,6 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import pkg from 'pg';
-const { Pool } = pkg;
-
-dotenv.config(); // Load environment variables
+require('dotenv').config(); // Load environment variables from .env file
+const express = require('express');
+const { Pool } = require('pg');
 
 const app = express();
 const port = 3000;
@@ -54,5 +51,3 @@ app.get('/test-db-connection', (req, res) => {
 app.listen(port, () => {
   console.log(`Server running at http://localhost:${port}`);
 });
-
-export default app;
