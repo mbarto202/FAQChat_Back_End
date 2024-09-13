@@ -29,3 +29,28 @@ const pool = new Pool({
 ```bash
 docker exec -it faqchat-db psql -U postgres -d faqchat_db
 ```
+
+## Usage
+
+### Start Server
+```bash
+npm start
+```
+
+### Endpoints
+
+- GET /: Returns a welcome message.
+
+- GET /users: Retrieves a list of all users from the "user" table.
+
+- GET /user/:id: Retrieves information for a specific user by user_id. Replace :id with the actual user ID.
+
+- GET /test-db-connection: Tests the database connection and returns the current server time from the database.
+
+### Error Handling
+
+- If the database connection fails, an error message will be logged to the console and returned to the client.
+
+- If a requested user does not exist, a 404 status code will be returned.
+
+- Invalid user ID inputs will return a 400 status code.

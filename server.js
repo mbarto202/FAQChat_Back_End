@@ -35,7 +35,37 @@ app.get('/', (req, res) => {
   res.send('Welcome to FAQChat Backend!');
 });
 
-// Route to db connection
+// Route to all users
+app.get('/users', async (req, res) => {
+    try {
+        const result = await pool.query('SELECT * FROM "user"');
+        res.status(200).json(result.rows);  // Return all users as JSON
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+        res.status(500).send('Error retrieving users');
+    }
+});
+
+// Route to display user information by ID
+app.get('/user/:id', async (req, res) => {
+    const userId = parseInt(req.params.id, 10);  // Convert user ID to integer
+    if (isNaN(userId)) {
+        return res.status(400).send('Invalid user ID');
+    }
+    
+    try {
+        const result = await pool.query('SELECT * FROM "user" WHERE user_id = $1', [userId]);
+        if (result.rows.length === 0) {
+            return res.status(404).send('User not found');
+        }
+        res.status(200).json(result.rows[0]);
+    } catch (err) {
+        console.error('Error executing query', err.stack);
+        res.status(500).send('Error retrieving user information');
+    }
+});
+
+// Route to test db connection
 app.get('/test-db-connection', (req, res) => {
     pool.query('SELECT NOW()', (err, result) => {
         if(err) {
