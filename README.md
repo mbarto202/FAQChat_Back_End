@@ -17,7 +17,7 @@ docker pull postgres
 docker run --name faqchat-db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 ```
 
-### Step 4: Run PostgreSQL Container
+### Step 4: Access PostgreSQL Container
 ```bash
 docker exec -it faqchat-db psql -U postgres
 ```
@@ -58,19 +58,14 @@ CREATE TABLE "user" (
 \d user
 ```
 
-## Steps to Connect to PostgreSQL Using Docker
+## Steps to Connect to PostgreSQL Within the Application
 
-### Step 1: Pull PostgreSQL Docker Image
-```bash 
-docker pull postgres
-```
-
-### Step 2: Run PostgreSQL Container
+### Step 1: Run PostgreSQL Container in Docker
 ```bash 
 docker run --name faqchat-db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 ```
 
-### Step 3: Connect to PostgreSQL in server.js
+### Step 2: Connect to PostgreSQL in server.js
 ```javascript 
 const pool = new Pool({
     user: 'postgres',
