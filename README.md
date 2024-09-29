@@ -57,6 +57,23 @@ CREATE TABLE "user" (
 ```sql
 \d user
 ```
+### Step 8: Insert Data
+Once the table is created, you can insert some dummy data into the user table to test the backend.
+
+Insert dummmy users:
+
+```sql
+INSERT INTO "user" (user_email, long_string_faq_data)
+VALUES 
+  ('user1@example.com', 'This is FAQ data for user 1.'),
+  ('user2@example.com', 'This is FAQ data for user 2.'),
+  ('user3@example.com', 'This is FAQ data for user 3.');
+```
+
+Verify dummy data:
+```sql
+SELECT * FROM "user";
+```
 
 ## Steps to Connect to PostgreSQL Within the Application
 
