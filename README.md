@@ -82,7 +82,21 @@ SELECT * FROM "user";
 docker run --name faqchat-db -e POSTGRES_PASSWORD=mysecretpassword -d -p 5432:5432 postgres
 ```
 
-### Step 2: Connect to PostgreSQL in server.js
+### Step 2: Install Dependencies
+```bash
+npm install
+```
+
+### Step 3: Create .env File and Add the Following Variables
+```bash
+DATABASE_USER=postgres
+DATABASE_HOST=localhost
+DATABASE_NAME=faqchat_db
+DATABASE_PASSWORD=mysecretpassword
+DATABASE_PORT=5432
+```
+
+### Step 4: Connect to PostgreSQL in server.js
 ```javascript 
 const pool = new Pool({
     user: 'postgres',
