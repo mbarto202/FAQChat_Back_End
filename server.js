@@ -1,9 +1,12 @@
 require('dotenv').config(); // Load environment variables from .env file
 const express = require('express');
 const { Pool } = require('pg');
+const cors = require('cors');
 
 const app = express();
 const port = 3001;
+
+app.use(cors());
 
 // connection setup/postgres info
 const pool = new Pool({
